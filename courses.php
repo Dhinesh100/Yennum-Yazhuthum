@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Yennum Yazhuthum-Upload</title>
+    <title>Yennum Yazhuthum-Articles</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -32,8 +32,8 @@
         <div class="top-header-area d-flex justify-content-between align-items-center">
             <!-- Contact Info -->
             <div class="contact-info">
-                <a href="tel:9894104549"><span>Phone:</span> +91 98941 04549</a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=rajend.tn@gmail.com"><span>Email:</span> rajend.tn@gmail.com</a>
+                <a href="#"><span>Phone:</span> +91 98941 04549</a>
+                <a href="#"><span>Email:</span> rajend.tn@gmail.com</a>
             </div>
             <!-- Follow Us -->
             <div class="follow-us">
@@ -70,7 +70,7 @@
                         <div class="classynav">
                             <ul>
                                 <li><a href="index.html">Home</a></li>
-                                <li><a href="courses.php">Articles</a></li>
+                                <li><a href="courses.html">Articles</a>
                                 <li><a href="blog.html">Upload</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
@@ -89,62 +89,45 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Blog Area Start ##### -->
-    <section  id="register" class="register-now section-padding-100-0 d-flex justify-content-around align-items-center" style="background-image: url(img/core-img/texture.png);">
-		<div class="mb-100 wow fadeInUp" data-wow-delay="250ms">
-            <div class="contact-form">
-				<h4>Upload An Article</h4>                    
-				<form action="upload.php" method="post" enctype="multipart/form-data">
-					<div class="row">
-						<div class="col-12 col-lg-6">
-							<div class="form-group">
-								<input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="form-group">
-								<input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name">
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="form-group">
-								<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="form-group">
-								<input type="number" class="form-control" id="phone" name="phone" placeholder="Phone">
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="form-group">
-								<input type="text" class="form-control" id="title" name="title" placeholder="Title">
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<div class="form-group">
-								<input type="datetime" class="form-control" id="date" name="date" placeholder="Date">
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="form-group">
-								<textarea class="form-control" id="description" name="description" cols="30" rows="10" placeholder="Description"></textarea>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="form-group justify-content-around">
-								<input type="file" id="file" name="file" class="btn-primary" />
-							</div>
-						</div>
-						<div class="col-12">
-							<button id="upload" name="upload" class="btn clever-btn w-100">Upload File</button>
-						</div>
-					</div>
-				</form>
-            </div>
-        </div>
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area">
+        <!-- Breadcumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="courses.html">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Mathematics &amp; Literature</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Catagory ##### -->
+    <div class="clever-catagory bg-img d-flex align-items-center justify-content-center p-3" style="background-image: url(img/bg-img/bg2.jpg);">
+        <h3>Mathematics &amp; Literature</h3>
+    </div>
+
+    <!-- ##### Popular Course Area Start ##### -->
+    <section class="popular-courses-area section-padding-100">
+        <div class="text-center">
+			<?php
+			$dbh = new PDO("mysql:host=localhost;dbname=yennum_yazhuthum", "root", "");
+			$stat = $dbh->prepare("SELECT * FROM FILES");
+			$stat->execute();
+			$count=0;
+			while ($row=$stat->fetch()) {
+				echo "<a href='/clever".$row['file']."'><h4>".$row['title']."</h4></a>";
+				echo "<span>Date".$row['date']."</span></br>";
+				echo "<p>".$row['description']."</p>";
+				$count=$count+1;
+			}
+			if($count==0) {
+				echo "<h4>NOTHING TO SHOW</h4>";
+			}
+			?>
+		</div>
     </section>
-    <!-- ##### Blog Area End ##### -->
+    <!-- ##### Popular Course Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
@@ -166,8 +149,8 @@
         <div class="bottom-footer-area d-flex justify-content-between align-items-center">
             <!-- Contact Info -->
             <div class="contact-info">
-                <a href="#"><span>Phone:</span> +91 98941 04549</a>
-                <a href="#"><span>Email:</span> rajend.tn@gmail.com</a>
+                <a href="tel:9894104549"><span>Phone:</span> +91 98941 04549</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=rajend.tn@gmail.com"><span>Email:</span> rajend.tn@gmail.com</a>
             </div>
             <!-- Follow Us -->
             <div class="follow-us">
@@ -192,5 +175,4 @@
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
-
 </html>
